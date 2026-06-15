@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abacus — генератор кода для Tilda</title>
+<link rel="stylesheet" href="css/page.css">
+<link rel="stylesheet" href="css/abacus.css">
+</head>
+<body>
+
+<div class="topbar">
+    <div class="topbar-inner">
+        <div class="brand">
+            <span class="brand-dot">A</span>
+            Abacus Generator
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Сменить тему">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </button>
+    </div>
+</div>
+
+<div class="container">
+
+    <header class="hero">
+        <h1>Абакус для Tilda</h1>
+        <p>Один скрипт обслуживает сколько угодно абакусов на странице. Добавляешь блоки разметки — конфликтов нет. Скопируй код ниже и вставь в HTML-блоки Tilda.</p>
+    </header>
+
+    <!-- Preview -->
+    <div class="card">
+        <div class="card-header">
+            <span class="step-num">★</span>
+            <div>
+                <p class="card-title">Превью</p>
+                <p class="card-desc">Рабочий компонент — потыкай кнопки и проверь подсказку.</p>
+            </div>
+            <span class="badge">live</span>
+        </div>
+        <div class="card-content">
+            <div class="preview-wrap">
+                <div class="abacus-instance">
+                    <div class="abacus-wrapper">
+                        <div class="abacus"><div class="bar"></div></div>
+                    </div>
+                    <div class="controls">
+                        <div class="left-controls">
+                            <button class="btn-reset">Сброс</button>
+                            <button class="btn-hint">Подсказка</button>
+                        </div>
+                        <div class="right-controls">
+                            <button class="btn-minus">−</button>
+                            <div class="rod-count">1</div>
+                            <button class="btn-plus">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="card">
+        <div class="card-header">
+            <span class="step-num">1</span>
+            <div>
+                <p class="card-title">Стили и скрипт</p>
+                <p class="card-desc">Вставь <b>один раз</b> на страницу. Скрипт сам находит все абакусы и запускает каждый независимо.</p>
+            </div>
+            <span class="badge">×1</span>
+        </div>
+        <div class="card-content">
+            <div class="code-box">
+                <button class="btn btn-primary copy-btn" data-target="code-script">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                    <span class="label">Копировать</span>
+                </button>
+                <pre id="code-script">Загрузка…</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="card">
+        <div class="card-header">
+            <span class="step-num">2</span>
+            <div>
+                <p class="card-title">Разметка абакуса</p>
+                <p class="card-desc">Копируй сколько угодно раз — по блоку на каждый абакус. <b>Менять <code class="inline">id</code> не нужно.</b></p>
+            </div>
+            <span class="badge">×N</span>
+        </div>
+        <div class="card-content">
+            <div class="code-box">
+                <button class="btn btn-primary copy-btn" data-target="code-markup">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                    <span class="label">Копировать</span>
+                </button>
+                <pre id="code-markup"></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="card">
+        <div class="card-header">
+            <span class="step-num">3</span>
+            <div>
+                <p class="card-title">Как добавить в Tilda</p>
+                <p class="card-desc">Порядок действий в конструкторе.</p>
+            </div>
+        </div>
+        <div class="card-content">
+            <ol class="tilda-steps">
+                <li>Добавь блок <b>«T123 → HTML»</b> (или Zero-блок).</li>
+                <li>В <b>первый</b> блок вставь код из <b>Шага 1</b> — он нужен один раз на странице.</li>
+                <li>Для <b>каждого</b> абакуса добавляй новый HTML-блок с кодом из <b>Шага 2</b>.</li>
+                <li>Сохрани и <b>опубликуй</b> — в предпросмотре скрипты иногда не запускаются.</li>
+            </ol>
+            <div class="alert">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                <div><b>Про минификатор Tilda.</b> Он ломает компактный JS (например <code class="inline">for(...)</code> без скобок). В этом коде всё развёрнуто в полные блоки — не сокращай его вручную.</div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="foot">
+        Стиль в духе shadcn/ui · абакус работает автономно
+    </footer>
+
+</div>
+
+<!-- движок абакуса (он же запускает превью) -->
+<script src="js/abacus.js"></script>
+<!-- логика страницы: сборка кода для копирования + тема -->
+<script src="js/page.js"></script>
+
+</body>
+</html>
